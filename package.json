@@ -43,8 +43,7 @@
     "watch:codegen": "yarn codegen --watch",
     "watch:nexus": "yarn ts-node --transpile-only --respawn --watch graphql/schema.ts,prisma/schema.prisma graphql/schema.ts",
     "watch:ts": "yarn dev:typecheck --watch",
-    "run:script": "yarn ts-node prisma/scripts/run.ts -f",
-    "run:test": "yarn run:script -- add-eb-designers.ts"
+    "run:script": "yarn ts-node prisma/scripts/run.ts -f"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
