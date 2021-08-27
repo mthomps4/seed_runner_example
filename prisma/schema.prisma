@@ -2,7 +2,6 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 // Latest about migrations:  https://www.prisma.io/blog/prisma-migrate-ga-b5eno5g08d0b
 
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -12,27 +11,40 @@ generator prisma_client {
   provider = "prisma-client-js"
 }
 
-model Profile {
-  id        String   @id @default(cuid())
-  firstName String
-  lastName  String
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  roles     Role[]
-  profile   Profile?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String        @id @default(cuid())
+  email          String        @unique
+  firstName      String
+  lastName       String
+  password       String
+  roles          Role[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
+  skills         Skill[]
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  users     User[]
+  slug      String   @unique
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String   @unique
+  description String?
+  archived    Boolean  @default(false)
+  users       User[]
 }

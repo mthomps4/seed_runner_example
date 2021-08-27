@@ -27,18 +27,7 @@ export const User = objectType({
 
     // Show email as null for unauthorized users
     t.string('email', {
-      resolve: (profile, _args, ctx) => (canAccess(profile, ctx) ? profile.email : null),
-    });
-
-    t.field('profile', {
-      type: 'Profile',
-      resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id },
-          })
-          .profile();
-      },
+      resolve: (parent, _args, ctx) => (canAccess(parent, ctx) ? parent.email : null),
     });
   },
 });
@@ -115,41 +104,6 @@ export const loginMutation = mutationField('login', {
   },
 });
 
-export const signupMutation = mutationField('signup', {
-  type: 'AuthPayload',
-  description: 'Signup for an account',
-  args: {
-    data: nonNull(arg({ type: 'SignupInput' })),
-  },
-  resolve: async (_root, args, ctx) => {
-    const { data } = args;
-    const existingUser = await ctx.db.user.findUnique({ where: { email: data.email } });
-
-    if (existingUser) {
-      throw new UserInputError('Email already exists.', {
-        invalidArgs: { email: 'already exists' },
-      });
-    }
-
-    // force role to user and hash the password
-    const updatedArgs = {
-      data: {
-        ...data,
-        roles: { set: [Role.USER] },
-        password: hashPassword(data.password),
-      },
-    };
-
-    const user = await ctx.db.user.create(updatedArgs);
-    const token = appJwtForUser(user);
-
-    return {
-      user,
-      token,
-    };
-  },
-});
-
 export const createUserMutation = mutationField('createUser', {
   type: 'User',
   description: 'Create User for an account',
@@ -178,38 +132,6 @@ export const createUserMutation = mutationField('createUser', {
     const user = await ctx.db.user.create(updatedArgs);
 
     return user;
-  },
-});
-
-// Inputs
-export const SignupProfileCreateInput = inputObjectType({
-  name: 'SignupProfileCreateInput',
-  description: 'Input required for Profile Create on Signup.',
-  definition: (t) => {
-    t.nonNull.string('firstName');
-    t.nonNull.string('lastName');
-  },
-});
-
-export const SignupProfileInput = inputObjectType({
-  name: 'SignupProfileInput',
-  description: 'Input required for Profile on Signup.',
-  definition: (t) => {
-    t.nonNull.field('create', {
-      type: SignupProfileCreateInput,
-    });
-  },
-});
-
-export const SignupInput = inputObjectType({
-  name: 'SignupInput',
-  description: 'Input required for a user to signup',
-  definition: (t) => {
-    t.nonNull.string('email');
-    t.nonNull.string('password');
-    t.nonNull.field('profile', {
-      type: SignupProfileInput,
-    });
   },
 });
 
@@ -252,9 +174,14 @@ export const UserCreateInput = inputObjectType({
   description: 'Input to Add a new user',
   definition(t) {
     t.nonNull.string('email');
+    t.nonNull.string('firstName');
+    t.nonNull.string('lastName');
     t.nonNull.string('password');
     t.field('roles', {
       type: list('Role'),
     });
+
+    t.field('organization', { type: 'OrganizationRelationInput' });
+    t.field('skills', { type: 'SkillRelationInput' });
   },
 });

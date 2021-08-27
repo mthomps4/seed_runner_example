@@ -28,6 +28,7 @@
     "g:test:factory": "hygen test factory --name",
     "g:test:request": "hygen test request --name",
     "g:test:util": "hygen test util --name",
+    "generate": "yarn build:prisma && touch types.ts && yarn build:nexus && yarn codegen",
     "lint": "yarn eslint . --ext .ts,.tsx --fix --ignore-pattern tmp",
     "setup:dev": "yarn db:setup && yarn build:types",
     "start": "next start -p $PORT",
@@ -41,7 +42,8 @@
     "watch:all": "concurrently -n \"NEXUS,GQLCODEGEN,TYPESCRIPT\" -c \"black.bgGreen.dim,black.bgBlue.dim,white.bgMagenta.dim\" \"yarn watch:nexus\" \"yarn watch:codegen\" \"yarn watch:ts\"",
     "watch:codegen": "yarn codegen --watch",
     "watch:nexus": "yarn ts-node --transpile-only --respawn --watch graphql/schema.ts,prisma/schema.prisma graphql/schema.ts",
-    "watch:ts": "yarn dev:typecheck --watch"
+    "watch:ts": "yarn dev:typecheck --watch",
+    "run:script": "yarn ts-node prisma/scripts/run.ts --file="
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
@@ -51,6 +53,7 @@
     "@emotion/styled": "^11.0.0",
     "@prisma/client": "^2.27.0",
     "@sendgrid/mail": "^7.4.4",
+    "@types/minimist": "^1.2.2",
     "apollo-server-micro": "^3.1.1",
     "bcryptjs": "^2.4.3",
     "cross-fetch": "3.0.5",
@@ -60,6 +63,7 @@
     "graphql-type-json": "^0.3.1",
     "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",
+    "minimist": "^1.2.5",
     "next": "11.0.1",
     "nexus": "^1.1.0",
     "react": "17.0.2",

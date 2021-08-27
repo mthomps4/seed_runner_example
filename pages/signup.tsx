@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 
 import { CenteredBoxForm } from '../components/CenteredBoxForm';
-import { SignupForm } from '../components/SignupForm';
 
 function SignupPage() {
   return (
@@ -12,7 +11,7 @@ function SignupPage() {
       </Head>
 
       <CenteredBoxForm>
-        <SignupForm />
+        <p>Sign Up</p>
       </CenteredBoxForm>
     </>
   );
