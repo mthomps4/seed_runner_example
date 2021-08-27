@@ -26,7 +26,7 @@ const main = async () => {
       password: hashPassword(INITIAL_PASSWORD),
       roles: [Role.ADMIN],
       organization: { connect: { id: org.id } },
-      skills: { set: [{ name: 'Design' }] },
+      skills: { connect: [{ name: 'Designer' }] },
     },
     {
       firstName: 'Alex',
@@ -35,7 +35,7 @@ const main = async () => {
       password: hashPassword(INITIAL_PASSWORD),
       roles: [Role.ADMIN],
       organization: { connect: { id: org.id } },
-      skills: { set: [{ name: 'Design' }] },
+      skills: { connect: [{ name: 'Designer' }] },
     },
   ];
 

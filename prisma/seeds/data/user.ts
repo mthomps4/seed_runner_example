@@ -11,7 +11,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'Design' }] },
+    skills: { connect: [{ name: 'Designer' }] },
   },
   {
     firstName: 'Chris',
@@ -20,7 +20,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'React Native' }] },
+    skills: { connect: [{ name: 'React' }] },
   },
   {
     firstName: 'Isaac',
@@ -29,7 +29,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'PM' }] },
+    skills: { connect: [{ name: 'PM' }] },
   },
   {
     firstName: 'Michael',
@@ -38,7 +38,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'Ruby' }] },
+    skills: { connect: [{ name: 'Ruby' }] },
   },
   {
     firstName: 'Ryan',
@@ -47,7 +47,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'React' }] },
+    skills: { connect: [{ name: 'React' }] },
   },
   {
     firstName: 'Sam',
@@ -56,7 +56,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'React' }] },
+    skills: { connect: [{ name: 'React' }] },
   },
   {
     firstName: 'Matt',
@@ -65,7 +65,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'React' }] },
+    skills: { connect: [{ name: 'React' }] },
   },
   {
     firstName: 'Shae',
@@ -74,7 +74,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'PM' }] },
+    skills: { connect: [{ name: 'PM' }] },
   },
   {
     firstName: 'Deloris',
@@ -83,7 +83,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'Ruby' }] },
+    skills: { connect: [{ name: 'Ruby' }] },
   },
   {
     firstName: 'Mariah',
@@ -92,7 +92,7 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(INITIAL_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'React' }] },
+    skills: { connect: [{ name: 'React' }] },
   },
 ];
 
@@ -106,7 +106,7 @@ const initialProdUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(PROD_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'PM' }] },
+    skills: { connect: [{ name: 'PM' }] },
   },
   {
     firstName: 'John',
@@ -115,7 +115,7 @@ const initialProdUsers = (orgId: string): UserCreateInput[] => [
     password: hashPassword(PROD_PASSWORD),
     roles: [Role.ADMIN],
     organization: { connect: { id: orgId } },
-    skills: { set: [{ name: 'React' }] },
+    skills: { connect: [{ name: 'React' }] },
   },
 ];
 

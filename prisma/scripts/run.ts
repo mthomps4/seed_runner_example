@@ -1,13 +1,24 @@
-export {};
+import { argv } from 'process';
+import { Command } from 'commander';
+import { spawn } from 'child_process';
 
+const program = new Command();
 const run = () => {
-  const { file } = require('minimist')(process.argv.slice(2));
+  program.option('-f, --file <type>', 'filename of script to run');
+
+  program.parse(process.argv);
+
+  const { file } = program.opts();
   console.log({ file });
 
-  if (file === '') {
-    return console.log('ERROR: file name required');
-  }
-  console.log({ file });
+  const child = spawn(`yarn ts-node ${__dirname}/${file}`, {
+    shell: true,
+    stdio: 'inherit',
+  });
+
+  child.on('exit', function (code) {
+    process.exit(code);
+  });
 };
 
 run();

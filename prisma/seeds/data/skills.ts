@@ -2,7 +2,7 @@ import { SkillCreateInput } from '../../../types';
 
 // Skills are the same on Dev and Prod...
 
-export const skillData: SkillCreateInput[] = [
+export const skillCreateData: SkillCreateInput[] = [
   {
     name: 'React',
     description: 'A favorite framework amongst FE devs',
@@ -20,6 +20,7 @@ export const skillData: SkillCreateInput[] = [
   },
   {
     name: 'Designer',
+    description: 'FigMA!',
   },
   {
     name: 'Elixir',
