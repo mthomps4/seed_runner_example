@@ -1,8 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-import { orgCreateData } from './seeds/data/organization';
-import { skillCreateData } from './seeds/data/skills';
-import { userCreateData } from './seeds/data/user';
+import { orgCreateData, skillCreateData, userCreateData } from './seeds/data';
 import { seedOrganizations } from './seeds/runners/organizations';
 import { seedSkills } from './seeds/runners/skills';
 import { seedUsers } from './seeds/runners/users';

@@ -1,4 +1,4 @@
-import { SkillCreateInput } from '../../../types';
+import { SkillCreateInput } from '../../../../types';
 
 // Skills are the same on Dev and Prod...
 

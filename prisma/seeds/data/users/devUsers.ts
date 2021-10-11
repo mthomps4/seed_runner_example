@@ -1,9 +1,9 @@
-import { hashPassword } from '../../../services/auth';
-import { Role, UserCreateInput } from '../../../types';
+import { hashPassword } from '../../../../services/auth';
+import { Role, UserCreateInput } from '../../../../types';
 
 const INITIAL_PASSWORD = 'test1234';
 
-const initialDevUsers = (orgId: string): UserCreateInput[] => [
+export const initialDevUsers = (orgId: string): UserCreateInput[] => [
   {
     firstName: 'Alex',
     lastName: 'Patrón',
@@ -95,31 +95,3 @@ const initialDevUsers = (orgId: string): UserCreateInput[] => [
     skills: { connect: [{ name: 'React' }] },
   },
 ];
-
-const PROD_PASSWORD = 'strong_a_pw';
-
-const initialProdUsers = (orgId: string): UserCreateInput[] => [
-  {
-    firstName: 'Jane',
-    lastName: 'Doe',
-    email: 'jane@client.com',
-    password: hashPassword(PROD_PASSWORD),
-    roles: [Role.ADMIN],
-    organization: { connect: { id: orgId } },
-    skills: { connect: [{ name: 'PM' }] },
-  },
-  {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@client.com',
-    password: hashPassword(PROD_PASSWORD),
-    roles: [Role.ADMIN],
-    organization: { connect: { id: orgId } },
-    skills: { connect: [{ name: 'React' }] },
-  },
-];
-
-const appENV = process.env.APP_ENV || 'development';
-
-export const userCreateData = (orgId: string): UserCreateInput[] =>
-  appENV === 'production' ? initialProdUsers(orgId) : initialDevUsers(orgId);
