@@ -36,5 +36,5 @@ In this case, we have an example for `yarn run:script add-eb-designers.ts`. This
 ## Summary
 
 - **seed/runners/*.ts**: Takes a list of `<Record>CreateInput[]` and maps through a related prisma upsert
-- **seed/data/*.ts**: Using ENV `APP_ENV` exports a list of `<Record>CreateInput[]` to be supplied to a given seed runner.
+- **seed/data/*.ts**: Using ENV `APP_ENV` exports a list of `<Record>CreateInput[]` to be supplied to a given seed runner. This ENV is set in the yarn script via `db:seed` or `db:seed:prod`.
 - **scripts/*.ts**: One-off scripts created, passing a list of `<Record>CreateInput[]` to a given seed runner inline. Ran via `yarn run:script {fileName}`

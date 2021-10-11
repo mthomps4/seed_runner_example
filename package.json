@@ -16,6 +16,7 @@
     "db:deploy": "yarn prisma deploy",
     "db:reset": "yarn prisma migrate reset",
     "db:seed": "yarn prisma db seed --preview-feature",
+    "db:seed:prod": "APP_ENV=production prisma db seed --preview-feature",
     "db:setup": "yarn db:reset",
     "dev": "concurrently -n \"WATCHERS,NEXT\" -c \"black.bgYellow.dim,black.bgCyan.dim\" \"yarn watch:all\" \"next dev\"",
     "dev:typecheck": "tsc --noEmit",
